@@ -1,0 +1,15 @@
+Here is the link to the problem : https://practice.geeksforgeeks.org/problems/factorial5739/1?utm_source=geeksforgeeks&utm_medium=ml_article_practice_tab&utm_campaign=article_practice_tab
+
+Using recursion, this code becomes so easy and reliable :
+In cpp,
+Code :
+
+long long int factorial(int N){
+        //code here
+        if(N==0) return 1;
+        //if greater
+        return N * factorial(N-1); //used recursion here
+    }
+
+Explanation :
+0! = 1 (by default)
