@@ -13,3 +13,13 @@ long long int factorial(int N){
 
 Explanation :
 0! = 1 (by default)
+1! = 1*0! = 1
+and so on.
+So for say N = 3, then
+lets just divide the problem as f(3), here 3!=0, so we skip to the recursive part : N * factorial(N-1), i.e. 3*f(2)
+f(2) = 2*f(1)
+f(1) = 1 * f(0), now N become 0, we gives us 1, so now step back to problem, one by one , f(1) = 1 * 1 = 1
+f(2) = 2 * 1 = 2
+f(3) = 3 * 2 = 6.
+which ultimately gives correct ans as fact of 3 is 6.
+This is how it works so simply.
