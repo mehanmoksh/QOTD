@@ -1,0 +1,54 @@
+Here is the first question of the day :-
+Heap Sort - Link of the problem {https://practice.geeksforgeeks.org/problems/heap-sort/1}
+
+Code in cpp:-
+
+class Solution
+{
+    public:
+    //Heapify function to maintain heap property.
+    void heapify(int arr[], int n, int i)  
+    {
+      // Your Code Here
+      //creating a maxheap, so simply check if there is laregst element lies at left or right node, we need it exactly at the parent node
+      int left = (2*i) + 1, right = (2*i) + 2, largest = i;
+      //now check if all the elements are in the boundaries or not
+      if(left<n && arr[left]>arr[largest]){
+          largest = left;
+      }
+      if(right<n && arr[right]>arr[largest]){
+          largest = right;
+      }
+      if(largest!=i){
+          swap(arr[i],arr[largest]);
+          heapify(arr,n,largest);
+      }
+    }
+
+    public:
+    //Function to build a Heap from array.
+    void buildHeap(int arr[], int n)  
+    { 
+    // Your Code Here
+    //bottom-most, left-most, right-most
+        for(int i = (n-2)/2; i>=0; i--){
+            heapify(arr,n,i);
+        }
+    }
+
+    
+    public:
+    //Function to sort an array using Heap Sort.
+    void heapSort(int arr[], int n)
+    {
+        //code here
+        //buildheap call
+        //then simply sorting and heapify from the last element to the upwards, a[0]
+        buildHeap(arr, n);
+        for(int i = n-1; i>=1; i--){
+            swap(arr[0],arr[i]);
+            heapify(arr, i, 0);
+        }
+    }
+};
+
