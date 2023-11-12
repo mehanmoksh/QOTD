@@ -1,0 +1,56 @@
+*** Happy Diwali Everyone ***
+
+Here I am going to tell you, how to reverse the array using recursion.
+
+***************
+
+1 way -> Taking left and right index as parameters:
+//reverse an array, using recursion
+//using the method, of telling the left and the right indeces to move on
+/*
+for say,
+a[] = {1,3,4,6,7};
+O/P : {7,6,4,3,1}
+
+//left will be 0th and right would be n-1 index
+goes until l>=r, left will not overlap or overcome with r
+*/
+
+Function's code in cpp :-
+void revArr(int l, int r, int a[], int n){
+    if(l>=r) return;
+    
+    //when it doesn't get passed
+    swap(a[l],a[r]); //simply swap them
+    //now recall the function by incrementing the value of l and decrementing the value of r
+    return revArr(l+1, r-1,a,n);
+}
+
+***************
+
+2nd way -> Taking size(n) and first index(i) as the parameters:
+/*
+like n = 4
+a = [3,4,5,6];
+0 to 4-0-1(3)
+1 to 4-1-1(2)
+done
+but what if odd elements
+a = [1,3,4,2,9]
+condition is until we get to the mid element, go it or return it
+so if(a[i]==a[n/2])
+like 0 to n-i-1 = n-0-1 = if 
+*/
+
+void revArr(int a[], int n, int i){
+    //here i would be the index which helps us to solve this using a formula
+    //n-i-1 will give us the exact last element
+    
+    if(a[i]==a[n/2]) return;
+    //if(i>=n/2) return; //this will also work in the same manner
+    
+    swap(a[i],a[n-i-1]);
+    
+    return revArr(a,n,i+1);
+}
+
