@@ -1,1 +1,13 @@
+Task : Find whether a string is a palindrome or not ?
+
+Function's Code in cpp ->
+
+bool palindrome(string &s, int i){
+    //first condition
+    if(i>=s.size()) return true;
+    //second condition
+    if(s[i] != s[s.size()-1-i]) return false;
+    //recalling the function
+    return palindrome(s,i+1);
+}
 
