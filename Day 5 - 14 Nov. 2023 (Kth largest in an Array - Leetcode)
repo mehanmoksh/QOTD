@@ -1,0 +1,46 @@
+Ques. Link :- {https://leetcode.com/problems/kth-largest-element-in-an-array/}
+
+There are three ways to do this question: using Sort fucntion, using Priority queue or using Quick select.
+
+I. Using Priority Queue :
+Code in cpp :
+
+//done it using the heap with the help of the priority queue
+/*
+Approach
+1. Build a minheap
+2. push array's elements into the heap
+3. check the size upto and pop it out (which wil be run inside the for loop instead, because we will only put as much elements as the kth number will allow)
+4. print the top
+*/
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int,vector<int>,greater<int>>pq;
+        for(auto i : nums){
+            pq.push(i);
+
+            if(pq.size()>k){
+            pq.pop();
+        }
+        }
+        return pq.top();
+    }
+};
+
+You can read solution by me : { https://leetcode.com/problems/kth-largest-element-in-an-array/solutions/4086097/kth-largest-by-priority-queue-for-loop-while-loop-and-for-each-loop/ }
+
+II. Using Sort fucntion:
+You can check my solution here : { https://leetcode.com/problems/kth-largest-element-in-an-array/solutions/4086073/sorting-an-array-with-time-complexity-o-n-logn-and-space-complexity-o-1/ }
+
+Here is its code in cpp:
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        //if we simply do it through sorting an array
+        sort(nums.begin(), nums.end());
+        return nums[nums.size()-k];
+    }
+};
