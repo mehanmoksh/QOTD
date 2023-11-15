@@ -9,7 +9,8 @@ vector<int> kLargest(int arr[], int n, int k) {
 	    // code here
 	    //sort function,for decreasing order
 	   sort(arr,arr+n,greater<int>());
-	    
+	
+           //put k largest elements into a vector 
 	   vector<int>result(arr,arr+k);
 	   return result;
 	}
