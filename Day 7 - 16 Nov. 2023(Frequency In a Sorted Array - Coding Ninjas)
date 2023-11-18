@@ -1,0 +1,46 @@
+here you need to find the total occurrences of an integer in a sorted array :
+
+Here's its solution in cpp :
+
+int countOccurrences(vector<int> arr, int x) {
+    int start = 0;  // Fix: Start from the beginning of the array
+    int end = arr.size() - 1;
+    int mid;
+    int first_index = -1;  // Initialize with an invalid index
+    int last_index = -1;   // Initialize with an invalid index
+
+    // Finding the first index
+    while (start <= end) {
+        mid = start + (end - start) / 2;
+        if (arr[mid] == x) {
+            first_index = mid;
+            end = mid - 1;
+        } else if (arr[mid] < x) {
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        }
+    }
+
+    // Finding the last index
+    start = 0;  // Fix: Reset the start pointer
+    end = arr.size() - 1;
+    while (start <= end) {
+        mid = start + (end - start) / 2;
+        if (arr[mid] == x) {
+            last_index = mid;
+            start = mid + 1;
+        } else if (arr[mid] < x) {
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        }
+    }
+
+    // Check if the target element was found at least once
+    if (first_index != -1 && last_index != -1) {
+        return (last_index - first_index) + 1;
+    } else {
+        return 0;  // Target element not found
+    }
+}
