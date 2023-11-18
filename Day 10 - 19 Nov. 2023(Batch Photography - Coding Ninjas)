@@ -1,0 +1,31 @@
+Ques link : { https://www.codingninjas.com/studio/problems/batch-photography_2279824 }
+
+Using DP memoization
+
+Code in cpp :
+
+int fun(int ind, vector<int> &ar, int n, int k, vector<int>&dp){
+    if(ind == n){
+        //if(cnt >= k){
+            return 0;
+        //}return 1e9;
+    }
+    if(dp[ind] != -1)return dp[ind];
+    int take = 1e9;
+    for(int i = ind; i < n; i++){
+        if(i - ind + 1 >= k){
+            take = min(take, max(ar[ind] - ar[i], fun(i + 1, ar, n, k, dp)));
+        }
+    }
+    
+    return dp[ind] = take;
+}
+
+int photography(int n, int k, vector<int> &photos) {
+    // Write your code here.
+    sort(photos.rbegin(), photos.rend());
+    vector<int>dp(n+1, -1);
+    return fun(0, photos, n, k, dp);
+    
+}
+
