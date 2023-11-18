@@ -1,0 +1,30 @@
+link to the problem : { https://www.codingninjas.com/studio/problems/recycling-pens_992773 }
+
+Java code :
+
+public class Solution {
+
+    public static int recyclePens(int n, int r, int k, int c) {
+        // Write your code here
+        int max=0;
+		int left=0;
+		int right=n;
+		while(left<=right)
+		{
+			long i = (left+right)/2;
+			long recycle_cost=(long)(n-i)*k;
+			long total_cost=recycle_cost+r;
+			if(total_cost>=(long)c*i)
+			{
+				left=(int)i+1;
+				max=(int)i;
+			}
+			else
+			{
+				right=(int)i-1;
+			}
+		}
+		return max;
+    }
+
+}
