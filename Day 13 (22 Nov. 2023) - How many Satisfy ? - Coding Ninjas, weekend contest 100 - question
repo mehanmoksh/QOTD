@@ -1,0 +1,46 @@
+Problem Statement
+Report An Issue
+You are given an array 'A' of length 'N' and an integer 'K'. An index (say 'i') is said to be a 'good index' if it follows the following conditions:
+• 'i + 2 * K - 1' is less than 'N'.
+• The sum of the subarray elements [i, i + 1, ..., i + K - 1] is 'P'.
+• The sum of the subarray elements [i + K, i + K - 1, .,. + 2 *
+K- 1] is 'Q'.
+• 'P' is greater than 'Q'.
+Your task is to tell the number of 'good indices' in the array 'A' and return it.
+Example:
+'N'
+'K' = 1
+'A' = 12, -1, 3, 11
+For index '0', the value of 'p' is '2', and
+'Q' is '-1'. Since 'p' is greater than 'Q', it is a good index
+
+Code in cpp :
+
+#include <vector>
+
+int howManySatisfy(int n, int k, std::vector<int>& a) {
+    // Write your code here.
+    // Here, first of all, we will check for the conditions, and at the end, we will return the count.
+     int count = 0;
+
+    for (int i = 0; i + 2 * k - 1 < n; ++i) {
+        int P = 0, Q = 0;
+
+        // Calculate the sum of the subarray [i, i + k - 1]
+        for (int j = 0; j < k; ++j) {
+            P += a[i + j];
+        }
+
+        // Calculate the sum of the subarray [i + k, i + 2 * k - 1]
+        for (int j = 0; j < k; ++j) {
+            Q += a[i + k + j];
+        }
+
+        // Check if P is greater than Q
+        if (P > Q) {
+            count++;
+        }
+    }
+
+    return count;
+}
