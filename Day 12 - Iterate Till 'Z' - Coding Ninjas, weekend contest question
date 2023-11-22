@@ -1,0 +1,30 @@
+Problem Statement
+You are given three integers, 'X', 'Y', and 'Z.
+Report An Issue
+Your task is to discover and return all integers from the range of '1' to 'Z'. The integers should be such that when divided by
+'X', they yield a remainder of 'Y'.
+Note The sequence of these returned integers can be in any
+order
+Example:
+'X'
+1¥' = 2
+'Z' = 10
+From '1' to '10', the numbers which, on dividing by '3', give '2' as a remainder are
+'2', '5', and '8'.
+Therefore, the answer is [2, 5, 8].
+
+Code in cpp :
+
+vector<int> iterateTillZ(int x, int y, int z) {
+    // Write Your Code Here
+    //run a loop starting from 1 till z and there divide the current element with x
+    //if that gives remainder as y, then returns that element 
+
+    vector<int>answer;
+    for(int i = 1; i<=z; i++){
+        if(i%x == y){
+            answer.push_back(i);
+        }
+    }
+    return answer;
+}
