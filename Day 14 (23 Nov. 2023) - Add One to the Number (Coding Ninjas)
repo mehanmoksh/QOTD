@@ -1,0 +1,60 @@
+Problem Statement
+
+Given a non-negative number represented as an array of digits, you have to add 1 to the number, i.e, increment the given number by one.
+The digits are stored such that the most significant digit is at the starting of the array and the least significant digit is at the end of the array.
+For Example
+If the given array is {1,5,2}, the returned array should be {1,5,3}
+Note
+Input array can contain leading zeros, but the output array should not contain any leading zeros (even if the input array contains leading zeroes).
+For Example:
+If the given array is {0,2}, the returned array should be {3}.
+Detailed explanation (Input/output format, Notes, Images )
+Constraints
+1 <= T <= 10
+1 <= N <= 5 * 10^4
+O <= Arrli] <= 9
+Where Arr[i] is the i-th digit in the number.
+
+Code in cpp :
+
+#include <bits/stdc++.h> 
+vector<int> addOneToNumber(vector<int> arr)
+{
+    // Write your code here
+    //assigning size of the vector
+    int n = arr.size();
+
+    //if any case, vector doesn't have any element
+    if(n == 0)
+        return {1};
+    
+    //now simply add 1 to the least significant digit of vector
+    arr[n-1] += 1; //last element mein humne 1 ko add krdiya
+
+    //now 1 add hone pe may be there's some carry generated, so we have to deal with it also
+    //propagate the carry
+    int carry = 0; //initializing it as zero
+    //running a reverse loop
+    for(int i = n-1; i>=0; i--){
+        arr[i] += carry; //adding carry to the vector
+        //check for carry
+        carry = arr[i]/10; //this will reduce the carry by one digit, each iteration
+        arr[i] %= 10; //having last digit of vector here, stored in the vector
+    }
+
+    //if there's still a carry after the loop, insert it to the beginning, as
+    //e.g. 99 + 1 = 100, but 00 comes by the loop but 1 is still as carry
+    if(carry > 0){
+        arr.insert(arr.begin(),carry);
+    }
+
+    //removing the preceding zeroes
+    //using the iterator with auto keyword and running a loop with certain conditions
+    auto it = arr.begin(); //storing beginning to the iterator
+    //now until iterator reaches the vector's end or there's any zero arrives at the beginning itself, erase it
+    while(it != arr.end() && *it == 0){
+        it = arr.erase(it); //it also points towards zero,acc. to the cond. above given
+    }
+
+    return arr; //returning the vector itself
+}
