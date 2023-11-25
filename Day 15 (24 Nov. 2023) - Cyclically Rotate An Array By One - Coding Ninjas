@@ -1,0 +1,43 @@
+Problem Statement
+
+You are given an integer array of size N. Your task is to rotate the array by one position in the clockwise direction.
+For example:
+If N = 5 and arr[] = {1, 2, 3, 4, 5} then output will be 5 1 2 3 4.
+If N = 8 and arr[] = {9, 8, 7, 6, 4, 2, 1, 3} then output will be 3 9 8 7 6 4 2 1.
+Detailed explanation (Input/output format, Notes, Images )
+Constraints:
+1 <= T <= 5
+1 <= N <= 1000
+-1019 <= arr] <=1019
+Sample Input 1
+1
+5
+12 3 4 5
+Sample Output 1 :
+51 2 3 4
+Explanation For Sample Input 1 :
+The first four elements are shifted towards the right by one position, and the last element i.e. 5 is shifted to the first position.
+Sample Input 2 :
+1
+8
+98764213
+Sample Output 2 :
+39876421
+
+Code in cpp :
+
+#include <bits/stdc++.h> 
+void rotate(vector<int>& arr, int n) {
+    // Write your code here
+    //handling the situation, when the array has only one element present
+    if(n<=1)
+        return;
+
+    int temp = arr[n-1]; //putting last element to a temp. variable
+    for(int i = n-1; i>0; i--){
+        //iterating in reverse order & moving all the previous elements to the next one
+        arr[i] = arr[i-1];
+    }
+    //now simply put temp into 0th indexed element
+    arr[0] = temp;
+}
